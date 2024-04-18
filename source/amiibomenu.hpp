@@ -38,6 +38,9 @@ public:
     
     AmiiboMenu(json AmiiboData){
         amiibodata = AmiiboData;
+        std::sort(amiibodata["amiibo"].begin(), amiibodata["amiibo"].end(), [](const json& a, const json& b) {
+            return a["amiiboSeries"].get<std::string>() < b["amiiboSeries"].get<std::string>();
+        });
     };
 
     int getMaxPage(){
